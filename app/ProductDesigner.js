@@ -1,0 +1,119 @@
+//Abstract Class Designer
+import { HtmlControlFactory } from './htmlControls/HtmlControlFactory.js'
+export class ProductDesigner {
+  constructor(canvas, $toolbar) {
+    this.elment = undefined
+    this.canvas = canvas
+    this.$toolbar = $toolbar
+    this.htmlFactory = new HtmlControlFactory()
+
+    if (new.target === ProductDesigner) {
+      throw new TypeError("Cannot construct Abstract instances directly");
+    }
+
+    this.canvas.on('mouse:down', (options) => {
+      //console.log(options.e.clientX, options.e.clientY);
+      if (options.target) {
+        console.log('an object was clicked! ', options.target.type);
+      } else {
+        let objs = canvas.getObjects()
+        let obj = objs[objs.length - 1]
+        this.canvas.setActiveObject(obj)
+      }
+    });
+  }
+
+  addToCanvas(ctrl) {
+    ctrl.on('selected', () => {
+      //render/re-render navigation on selection of control
+      this.navigation()
+    })
+    this.canvas.add(ctrl);
+    this.canvas.setActiveObject(ctrl)
+    //this.navigation()
+  }
+
+  navigationButtons() {
+    if (!this.canvas.getObjects().length) {
+      return false
+    }
+
+    return [
+      {
+        type: 'color',
+        title: 'Color',
+        //use arrow function otherwise reference to this for productDesigner class ll not be available
+        activeOption: this.getActiveControlProp('fill') || '#000000',
+        event: (event) => {
+          this.setColor(event)
+        }
+      },
+      {
+        type:'color',
+        title: 'Bg Color',
+        //use arrow function otherwise reference to this for productDesigner class ll not be available
+        activeOption: this.getActiveControlProp('textBackgroundColor') || '#FFFFFF',
+        event: (event) => {
+          this.setBackgroundColor(event)
+        }
+      },
+      {
+        type: 'svg',
+        width: '20',
+        height: '20',
+        icon: 'delete',
+        title: 'Delete',
+        class: 'right',
+        event: () => {
+          this.canvas.remove(this.getActiveControl())
+        }
+      },
+    ]
+  }
+  
+  navigation() {
+    this.$toolbar.empty()
+    const navButtons = this.navigationButtons()
+    for (var i in navButtons) {
+      let control = this.htmlFactory.control(navButtons[i])
+      this.$toolbar.append(control.render())
+    }
+  }
+  
+  config() {
+    return {
+      left: 100, 
+      top: 100, 
+      editable: true
+    }
+  }
+
+  updateControl(prop, value, toggleValue) {
+    if (toggleValue !== undefined && this.getActiveControl().get(prop) == value) {
+      //check if element contains prop as value then use toggleValue
+      value = toggleValue
+    }
+
+    this.getActiveControl().set(prop, value)
+    this.canvas.renderAll()
+  }
+
+  getActiveControl() {
+    return this.canvas.getActiveObject() || this.element
+  }
+
+  getActiveControlProp(prop) {
+    if (!this.getActiveControl()) return false
+    return this.getActiveControl().get(prop)
+  }
+
+  render() {}
+
+  setColor(event) {
+    this.getActiveControl().set("fill", event.target.value)
+    event.target.select()
+  }
+  setBackgroundColor(event) {
+    //this.updateControl("textBackgroundColor", event.target.value)
+  }
+} 
