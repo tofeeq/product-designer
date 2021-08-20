@@ -17,10 +17,10 @@
             <div class="vertical-tab" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#uploads" class="uploads-module" aria-controls="home" role="tab" data-toggle="tab" onclick="primaDesigner.showToolbar('uploads')"><i class="fas fa-arrow-up"></i>Uploads</a></li>
-                    <li role="presentation"><a href="#photos" class="photos-module" aria-controls="profile" role="tab" data-toggle="tab" onclick="primaDesigner.getPhotos()"><i class="fas fa-camera"></i> Photos</a></li>
-                    <li role="presentation"><a href="#elements" class="elements-module" aria-controls="messages" role="tab" data-toggle="tab" onclick="primaDesigner.showToolbar('shapes')"><i class="fas fa-square-full"></i> Elements</a></li>
-                    <li role="presentation"><a href="#text" class="text-module" aria-controls="messages" role="tab" data-toggle="tab" onclick="primaDesigner.showToolbar('text')"><i class="fas fa-file-alt"></i>Text</a></li>
+                    <li role="presentation" class="active"><a href="#uploads" class="uploads-module" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-arrow-up"></i>Uploads</a></li>
+                    <li role="presentation"><a href="#photos" class="photos-module" aria-controls="profile" role="tab" data-toggle="tab" ><i class="fas fa-camera"></i> Photos</a></li>
+                    <li role="presentation"><a href="#elements" class="elements-module" aria-controls="messages" role="tab" data-toggle="tab" ><i class="fas fa-square-full"></i> Elements</a></li>
+                    <li role="presentation"><a href="#text" class="text-module" aria-controls="messages" role="tab" data-toggle="tab" ><i class="fas fa-file-alt"></i>Text</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content tabs">
@@ -54,32 +54,24 @@
                     <div role="tabpanel" class="tab-pane fade" id="elements">
                         <h3>Shapes</h3>
                         <div class="shape-elements">
-                            <div class="circle-shape-element" onclick="primaDesigner.draw('circle')">
-                                <svg width="50" height="45" xmlns="http://www.w3.org/2000/svg">
+                            <div class="shape-element" data-control="circle">
+                                <svg width="75" height="75" xmlns="http://www.w3.org/2000/svg">
                                  <g id="Layer_1">
                                   <title>Circle</title>
-                                  <ellipse fill="#b0b7b7" stroke="#000" cx="24.5" cy="22.5" id="svg_1" rx="22.5" ry="21"/>
+                                  <ellipse fill="#b0b7b7" stroke="#000" cx="35" cy="35" id="svg_1" rx="35" ry="35"/>
                                  </g>
                                 </svg>
                             </div>
-                            <div class="rectangle-shape-element" onclick="primaDesigner.draw('rectangle')">
-                                <svg width="55" height="35" xmlns="http://www.w3.org/2000/svg">
-                                 <g id="Layer_1">
-                                  <title>Rectangle</title>
-                                  <rect fill="#b0b7b7" stroke="#000" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" x="3.5" y="6.5" width="47" height="23" id="svg_1"/>
-                                 </g>
-                                </svg>
+                            <div class="shape-element" data-control="rectangle">
+                              <svg width="120" height="75" xmlns="http://www.w3.org/2000/svg">
+                                <g id="Layer_1">
+                                 <title>Rectangle</title>
+                                 <rect fill="#b0b7b7" stroke="#000" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" x="0" y="0" width="120" height="75" id="svg_1"></rect>
+                                </g>
+                               </svg>
                             </div>
-                            <div class="triangle-shape-element" onclick="primaDesigner.draw('triangle')">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="48" height="50.82758605806214" style="">
-                                   <title>Triangle</title>
-                                   <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#293039" stroke="none" class="" style=""/>
-                                   <g class="currentLayer" style="">
-                                      <title>Triangle</title>
-                                      <path fill="#b6b6b6" stroke="#919191" stroke-width="2" stroke-linejoin="round" stroke-dashoffset="" fill-rule="nonzero" marker-start="" marker-mid="" marker-end="" id="svg_1" d="M2.780542379235243,44.575361256071645 L24.332263141585855,6.859849921959366 L45.88398390393547,44.575361256071645 L2.780542379235243,44.575361256071645 z" style="color: rgb(0, 0, 0);" class="" fill-opacity="1" stroke-opacity="1"/>
-                                      <path fill="#dadada" fill-opacity="1" stroke="#222222" stroke-opacity="1" stroke-width="2" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset="" fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" id="svg_3" d="M242.64826979529397,99.37931215210284 " style="color: rgb(0, 0, 0);"/>
-                                   </g>
-                                </svg>
+                            <div class="shape-element" data-control="triangle">
+                              <svg width="110" height="75"><use xlink:href="#triangle" /></svg>
                             </div>
                         </div>
                     </div>
@@ -185,6 +177,10 @@ const canvas = new fabric.Canvas('product-designer-canvas');
 		c0,8.69,7.047,15.738,15.738,15.738h302.16c8.69,0,15.738-7.047,15.738-15.738V207.476h22.034c8.69,0,15.738-7.047,15.738-15.738
 		v-53.377C460.59,102.71,431.585,73.706,395.935,73.706z M391.342,480.525H120.658V207.476h270.685V480.525z"/>
 
+      </symbol>
+
+      <symbol xmlns="http://www.w3.org/2000/svg" id="triangle" xmlns:bx="https://boxy-svg.com" viewBox="110 74 95 90">
+        <path d="M 215.183 72.172 L 280.113 165.896 L 150.254 165.896 L 215.183 72.172 Z" style="fill: rgb(216, 216, 216);" transform="matrix(0.999998, -0.001981, 0.001981, 0.999998, -59.337037, 3.340639)" bx:shape="triangle 150.254 72.172 129.859 93.724 0.5 0 1@ef1ee0c6"/>
       </symbol>
   </svg>
 </body>

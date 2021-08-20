@@ -142,6 +142,15 @@ export class Text extends ProductDesigner {
         event: (event) => {
           this.updateControl("fontFamily", event.target.value)
         }
+      },
+      {
+        type:'color',
+        title: 'Bg Color',
+        //use arrow function otherwise reference to this for productDesigner class ll not be available
+        activeOption: this.getActiveControlProp('textBackgroundColor') || '#FFFFFF',
+        event: (event) => {
+          this.setBackgroundColor(event)
+        }
       }
     ]
     return navButtons.concat(super.navigationButtons())

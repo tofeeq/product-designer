@@ -1,5 +1,6 @@
 
 .shape-elements {float:left;clear:both;}
+.shape-elements svg {cursor: pointer; }
 .shape-element-properties{float:left;clear:both;display:none;}
 .shape-color-label, .shape-color-field{padding:5px;float:left;}
 .shape-color-label {clear:left;color:#000;}
@@ -10,9 +11,7 @@
 .shape-stroke-color-field {padding:5px;float:left;}
 .photos-heading {float:left;}
 
-.circle-shape-element,
-.rectangle-shape-element,
-.triangle-shape-element {float:left;width:70;margin-bottom:10px;padding-left:5px;}
+.shape-element {display: inline-block; margin-left: 5px; margin-right: 5px;}
 .rectangle-shape-element {margin-left: 10px;}
 .text-color {background-color: #000}
 #text-toolbar {display: block;margin-bottom: 5px;margin-top: 5px;}

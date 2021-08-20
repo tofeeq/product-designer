@@ -2,6 +2,7 @@
 import { HtmlControlFactory } from './htmlControls/HtmlControlFactory.js'
 export class ProductDesigner {
   constructor(canvas, $toolbar) {
+    this.defaultColor = '#eef'
     this.elment = undefined
     this.canvas = canvas
     this.$toolbar = $toolbar
@@ -14,7 +15,7 @@ export class ProductDesigner {
     this.canvas.on('mouse:down', (options) => {
       //console.log(options.e.clientX, options.e.clientY);
       if (options.target) {
-        console.log('an object was clicked! ', options.target.type);
+        //console.log('an object was clicked! ', options.target.type);
       } else {
         let objs = canvas.getObjects()
         let obj = objs[objs.length - 1]
@@ -46,15 +47,6 @@ export class ProductDesigner {
         activeOption: this.getActiveControlProp('fill') || '#000000',
         event: (event) => {
           this.setColor(event)
-        }
-      },
-      {
-        type:'color',
-        title: 'Bg Color',
-        //use arrow function otherwise reference to this for productDesigner class ll not be available
-        activeOption: this.getActiveControlProp('textBackgroundColor') || '#FFFFFF',
-        event: (event) => {
-          this.setBackgroundColor(event)
         }
       },
       {
@@ -107,7 +99,10 @@ export class ProductDesigner {
     return this.getActiveControl().get(prop)
   }
 
-  render() {}
+  render() {
+    const control = this.control(this.config())
+    this.addToCanvas(control)
+  }
 
   setColor(event) {
     this.getActiveControl().set("fill", event.target.value)
