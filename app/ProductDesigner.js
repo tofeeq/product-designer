@@ -26,7 +26,7 @@ export class ProductDesigner {
       if (! this.getActiveControl()) {
         this.canvas.setActiveObject(this.elment)
       }
-    });
+    })
   }
 
   addToCanvas(ctrl) {
