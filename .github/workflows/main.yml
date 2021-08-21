@@ -28,3 +28,4 @@ jobs:
         server: tofeeq.prima2go.com
         username: tofeeqmage
         password: ${{ secrets.ftp_password }}
+        server-dir: public_html/
