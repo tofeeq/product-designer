@@ -1,9 +1,8 @@
-import { ProductDesigner } from '../ProductDesigner.js'
-export class Triangle extends ProductDesigner {
+import { Element } from './Element.js'
+export class Triangle extends Element {
   
   control(config) {
-    this.element = new fabric.Triangle(config)
-    return this.element
+    return new fabric.Triangle(config)
   }
 
   config() {

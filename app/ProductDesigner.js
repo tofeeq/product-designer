@@ -16,10 +16,15 @@ export class ProductDesigner {
       //console.log(options.e.clientX, options.e.clientY);
       if (options.target) {
         //console.log('an object was clicked! ', options.target.type);
-      } else {
+        this.elment = options.target
+      }  
+      if (!this.elment) {
         let objs = canvas.getObjects()
         let obj = objs[objs.length - 1]
-        this.canvas.setActiveObject(obj)
+      }
+      
+      if (! this.getActiveControl()) {
+        this.canvas.setActiveObject(this.elment)
       }
     });
   }
@@ -40,15 +45,6 @@ export class ProductDesigner {
     }
 
     return [
-      {
-        type: 'color',
-        title: 'Color',
-        //use arrow function otherwise reference to this for productDesigner class ll not be available
-        activeOption: this.getActiveControlProp('fill') || '#000000',
-        event: (event) => {
-          this.setColor(event)
-        }
-      },
       {
         type: 'svg',
         width: '20',
@@ -104,11 +100,6 @@ export class ProductDesigner {
     this.addToCanvas(control)
   }
 
-  setColor(event) {
-    this.getActiveControl().set("fill", event.target.value)
-    event.target.select()
-  }
-  setBackgroundColor(event) {
-    //this.updateControl("textBackgroundColor", event.target.value)
-  }
+  
+  
 } 

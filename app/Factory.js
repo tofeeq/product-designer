@@ -2,6 +2,8 @@ import { Text } from './controls/Text.js'
 import { Circle } from './controls/Cirlce.js'
 import { Triangle } from './controls/Triangle.js'
 import { Rectanlge } from './controls/Rectanlge.js'
+import { Ellipse } from './controls/Ellipse.js'
+import { Line } from './controls/Line.js'
 export class Factory {
   control(name, canvas, toolbar) {
     switch (name) {
@@ -17,6 +19,10 @@ export class Factory {
         return new Triangle(canvas, toolbar)
       case 'rectangle':
         return new Rectanlge(canvas, toolbar)
+      case 'ellipse':
+        return new Ellipse(canvas, toolbar)
+      case 'line':
+        return new Line(canvas, toolbar)
     }
   }
 }

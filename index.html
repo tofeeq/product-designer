@@ -73,6 +73,12 @@
                             <div class="shape-element" data-control="triangle">
                               <svg width="110" height="75"><use xlink:href="#triangle" /></svg>
                             </div>
+                            <div class="shape-element" data-control="ellipse">
+                              <svg width="110" height="75"><use xlink:href="#ellipse" /></svg>
+                            </div>
+                            <div class="shape-element" data-control="line">
+                              <svg width="110" height="75"><use xlink:href="#line" /></svg>
+                            </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="text">
@@ -180,7 +186,13 @@ const canvas = new fabric.Canvas('product-designer-canvas');
       </symbol>
 
       <symbol xmlns="http://www.w3.org/2000/svg" id="triangle" xmlns:bx="https://boxy-svg.com" viewBox="110 74 95 90">
-        <path d="M 215.183 72.172 L 280.113 165.896 L 150.254 165.896 L 215.183 72.172 Z" style="fill: rgb(216, 216, 216);" transform="matrix(0.999998, -0.001981, 0.001981, 0.999998, -59.337037, 3.340639)" bx:shape="triangle 150.254 72.172 129.859 93.724 0.5 0 1@ef1ee0c6"/>
+        <path d="M 215.183 72.172 L 280.113 165.896 L 150.254 165.896 L 215.183 72.172 Z" style="fill: #b0b7b7;" transform="matrix(0.999998, -0.001981, 0.001981, 0.999998, -59.337037, 3.340639)" bx:shape="triangle 150.254 72.172 129.859 93.724 0.5 0 1@ef1ee0c6"/>
+      </symbol>
+      <symbol viewBox="0 0 200 100" id="ellipse" xmlns="http://www.w3.org/2000/svg">
+        <ellipse fill="#b0b7b7" cx="100" cy="50" rx="100" ry="50" />
+      </symbol>
+      <symbol viewBox="0 0 100 100" id="line" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="80" x2="100" y2="20" stroke="#b0b7b7" />
       </symbol>
   </svg>
 </body>

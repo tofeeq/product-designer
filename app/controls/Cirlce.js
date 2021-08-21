@@ -1,9 +1,8 @@
-import { ProductDesigner } from '../ProductDesigner.js'
-export class Circle extends ProductDesigner {
+import { Element } from './Element.js'
+export class Circle extends Element {
   
   control(config) {
-    this.element = new fabric.Circle(config)
-    return this.element
+    return new fabric.Circle(config)
   }
 
   config() {

@@ -1,9 +1,8 @@
-import { ProductDesigner } from '../ProductDesigner.js'
-export class Rectanlge extends ProductDesigner {
+import { Element } from './Element.js'
+export class Rectanlge extends Element {
   
   control(config) {
-    this.element = new fabric.Rect(config)
-    return this.element
+    return new fabric.Rect(config)
   }
 
   config() {
