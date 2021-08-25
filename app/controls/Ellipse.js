@@ -1,14 +1,13 @@
-import { Element } from './Element.js'
+import { Element } from './Element.js';
 
 export class Ellipse extends Element {
-  
   control(config) {
-    return new fabric.Ellipse(config)
+    return new fabric.Ellipse(config);
   }
 
   config() {
     return Object.assign({}, super.config(), {
-      left: 100,
+      left: 200,
       top: 100,
       originX: 'left',
       originY: 'top',
@@ -16,6 +15,6 @@ export class Ellipse extends Element {
       ry: 50,
       angle: 0,
       fill: this.defaultColor,
-    })
+    });
   }
 }

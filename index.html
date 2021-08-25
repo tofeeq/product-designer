@@ -1,199 +1,373 @@
 <!DOCTYPE html>
-<html  xmlns="https://www.w3.org/1999/xhtml" lang="en-US">
-<head>
-<script src="./assets/js/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
-<link rel="stylesheet" href="https://e6t7a8v2.stackpathcdn.com/tutorial/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="./assets/css/lib/jquery.mCustomScrollbar.min.css">
-<link rel="stylesheet" href="./assets/css/style.css">
-<script src="./assets/js/fabric.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="row">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en-US">
+  <head>
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://e6t7a8v2.stackpathcdn.com/tutorial/css/fontawesome-all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/css/lib/jquery.mCustomScrollbar.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/fabric.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
         <div class="col-sm-4 left-sidebar">
-            <div class="vertical-tab" role="tabpanel">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#uploads" class="uploads-module" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-arrow-up"></i>Uploads</a></li>
-                    <li role="presentation"><a href="#photos" class="photos-module" aria-controls="profile" role="tab" data-toggle="tab" ><i class="fas fa-camera"></i> Photos</a></li>
-                    <li role="presentation"><a href="#elements" class="elements-module" aria-controls="messages" role="tab" data-toggle="tab" ><i class="fas fa-square-full"></i> Elements</a></li>
-                    <li role="presentation"><a href="#text" class="text-module" aria-controls="messages" role="tab" data-toggle="tab" ><i class="fas fa-file-alt"></i>Text</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content tabs">
-                    <div role="tabpanel" class="tab-pane fade in active" id="uploads">
-                        <form id="upload-frm" enctype="multipart/form-data" action="./upload.php" method="POST">
-
-                            <button id="btn-upload" type="button" class="btn btn-primary btn-block">Upload</button>
-                            <input id='upload-file-id' type='file' name="fileUpload" style="display:none;" />
-
-                        </form>
-                        <div id="image-preview-container">
-                            <img id="image-preview" src="" width="100" height="100" onclick="primaDesigner.addImageIntoCanvas(this)" />
-                        </div>
-                        <div id="file-upload-loader">
-                            <img src="./assets/images/ajax-loader.gif">
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="photos">
-                        <div id="photos-container">
-                            <div id="uploads-heading"><h3>Uploads</h3></div>
-                            <div id="uploaded-photos" class="col-sm-12">
-                                
-                            </div>
-                            <div class="photos-heading"><h3>Photos</h3></div>
-                            <div id="system-photos" class="col-sm-12">
-                            
-                            </div>
-                        </div>
-
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="elements">
-                        <h3>Shapes</h3>
-                        <div class="shape-elements">
-                            <div class="shape-element" data-control="circle">
-                                <svg width="75" height="75" xmlns="http://www.w3.org/2000/svg">
-                                 <g id="Layer_1">
-                                  <title>Circle</title>
-                                  <ellipse fill="#b0b7b7" stroke="#000" cx="35" cy="35" id="svg_1" rx="35" ry="35"/>
-                                 </g>
-                                </svg>
-                            </div>
-                            <div class="shape-element" data-control="rectangle">
-                              <svg width="120" height="75" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Layer_1">
-                                 <title>Rectangle</title>
-                                 <rect fill="#b0b7b7" stroke="#000" stroke-width="null" stroke-dasharray="null" stroke-opacity="null" fill-opacity="null" x="0" y="0" width="120" height="75" id="svg_1"></rect>
-                                </g>
-                               </svg>
-                            </div>
-                            <div class="shape-element" data-control="triangle">
-                              <svg width="110" height="75"><use xlink:href="#triangle" /></svg>
-                            </div>
-                            <div class="shape-element" data-control="ellipse">
-                              <svg width="110" height="75"><use xlink:href="#ellipse" /></svg>
-                            </div>
-                            <div class="shape-element" data-control="line">
-                              <svg width="110" height="75"><use xlink:href="#line" /></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="text">
-
-
-                        <h3>Text</h3>
-                        
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-secondary btn-lg text-heading text-heading1" data-control="heading">Add a heading</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-secondary btn-lg text-heading text-heading2" data-control="subheading">Add a subheading</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-secondary btn-lg text-heading text-simple" data-control="text">Add a little bit of body text</button>
-                            </div>
-                        </div>
-                       
-
-                    </div>
+          <div class="vertical-tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active">
+                <a
+                  href="#uploads"
+                  class="uploads-module"
+                  aria-controls="home"
+                  role="tab"
+                  data-toggle="tab"
+                  ><i class="fas fa-arrow-up"></i>Uploads</a
+                >
+              </li>
+              <li role="presentation">
+                <a
+                  href="#photos"
+                  class="photos-module"
+                  aria-controls="profile"
+                  role="tab"
+                  data-toggle="tab"
+                  ><i class="fas fa-camera"></i> Photos</a
+                >
+              </li>
+              <li role="presentation">
+                <a
+                  href="#elements"
+                  class="elements-module"
+                  aria-controls="messages"
+                  role="tab"
+                  data-toggle="tab"
+                  ><i class="fas fa-square-full"></i> Elements</a
+                >
+              </li>
+              <li role="presentation">
+                <a
+                  href="#text"
+                  class="text-module"
+                  aria-controls="messages"
+                  role="tab"
+                  data-toggle="tab"
+                  ><i class="fas fa-file-alt"></i>Text</a
+                >
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tabs">
+              <div role="tabpanel" class="tab-pane fade in active" id="uploads">
+                <form
+                  id="upload-frm"
+                  enctype="multipart/form-data"
+                  action="./upload.php"
+                  method="POST"
+                >
+                  <button
+                    id="btn-upload"
+                    type="button"
+                    class="btn btn-primary btn-block"
+                  >
+                    Upload
+                  </button>
+                  <input
+                    id="upload-file-id"
+                    type="file"
+                    name="fileUpload"
+                    style="display: none"
+                  />
+                </form>
+                <div id="image-preview-container">
+                  <img
+                    id="image-preview"
+                    src=""
+                    width="100"
+                    height="100"
+                    onclick="primaDesigner.addImageIntoCanvas(this)"
+                  />
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-8" style="background-color:#fff;border:0px solid red;">
-        <div class="row">
-            <div class="col-sm-11"  id="toolbar" >
-            </div>
-        </div>
+                <div id="file-upload-loader">
+                  <img src="./assets/images/ajax-loader.gif" />
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="photos">
+                <div id="photos-container">
+                  <div id="uploads-heading"><h3>Uploads</h3></div>
+                  <div id="uploaded-photos" class="col-sm-12"></div>
+                  <div class="photos-heading"><h3>Photos</h3></div>
+                  <div id="system-photos" class="col-sm-12"></div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="elements">
+                <h3>Shapes</h3>
+                <div class="shape-elements">
+                  <div class="shape-element" data-control="circle">
+                    <svg
+                      width="75"
+                      height="75"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="Layer_1">
+                        <title>Circle</title>
+                        <ellipse
+                          fill="#b0b7b7"
+                          stroke="#000"
+                          cx="35"
+                          cy="35"
+                          id="svg_1"
+                          rx="35"
+                          ry="35"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="shape-element" data-control="rectangle">
+                    <svg
+                      width="120"
+                      height="75"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="Layer_1">
+                        <title>Rectangle</title>
+                        <rect
+                          fill="#b0b7b7"
+                          stroke="#000"
+                          stroke-width="null"
+                          stroke-dasharray="null"
+                          stroke-opacity="null"
+                          fill-opacity="null"
+                          x="0"
+                          y="0"
+                          width="120"
+                          height="75"
+                          id="svg_1"
+                        ></rect>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="shape-element" data-control="triangle">
+                    <svg width="110" height="75">
+                      <use xlink:href="#triangle" />
+                    </svg>
+                  </div>
+                  <div class="shape-element" data-control="ellipse">
+                    <svg width="110" height="75">
+                      <use xlink:href="#ellipse" />
+                    </svg>
+                  </div>
+                  <div class="shape-element" data-control="line">
+                    <svg width="110" height="75">
+                      <use xlink:href="#line" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="text">
+                <h3>Text</h3>
 
-        <div class="row">
-            <div class="col-sm-12 canvas-container" style="border:0px solid blue;">
-                <canvas id="product-designer-canvas" width="880" height="650" style="border:1px solid #acb0ad;"></canvas>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button
+                      type="button"
+                      class="
+                        btn btn-secondary btn-lg
+                        text-heading text-heading1
+                      "
+                      data-control="heading"
+                    >
+                      Add a heading
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button
+                      type="button"
+                      class="
+                        btn btn-secondary btn-lg
+                        text-heading text-heading2
+                      "
+                      data-control="subheading"
+                    >
+                      Add a subheading
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-lg text-heading text-simple"
+                      data-control="text"
+                    >
+                      Add a little bit of body text
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-   </div>
+        <div
+          class="col-sm-8"
+          style="background-color: #fff; border: 0px solid red"
+        >
+          <div class="row">
+            <div class="col-sm-11" id="toolbar"></div>
+          </div>
+
+          <div class="row">
+            <div
+              class="col-sm-12 canvas-container"
+              style="border: 0px solid blue"
+            >
+              <canvas
+                id="product-designer-canvas"
+                width="880"
+                height="650"
+                style="border: 1px solid #acb0ad"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
- 
-<script src="./assets/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="module">
-import { Factory } from './app/Factory.js'
-const factory = new Factory()
-const canvas = new fabric.Canvas('product-designer-canvas');
-  $(() => {
-    const $toolbar = $("#toolbar")
-    $("[data-control]").each(function(event) {
-      let control = $(this).attr('data-control')
-      $(this).on('click', function() {
-        factory.control(control, canvas, $toolbar).render()
-      })
-    })
-  })
-</script>
 
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  
+    <script src="./assets/js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="module">
+      import { Factory } from './app/Factory.js';
+      const factory = new Factory();
+      const canvas = new fabric.Canvas('product-designer-canvas');
+      $(() => {
+        const $toolbar = $('#toolbar');
+        $('[data-control]').each(function (event) {
+          let control = $(this).attr('data-control');
+          $(this).on('click', function () {
+            factory.control(control, canvas, $toolbar).render();
+          });
+        });
+      });
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="bold" viewBox="0 0 28 28">
-        <path style="fill:#030104;" d="M25.17,0.624H2.175C0.972,0.624,0,1.598,0,2.8v21.747c0,1.199,0.972,2.175,2.175,2.175H25.17
+        <path
+          style="fill: #030104"
+          d="M25.17,0.624H2.175C0.972,0.624,0,1.598,0,2.8v21.747c0,1.199,0.972,2.175,2.175,2.175H25.17
 			c1.199,0,2.176-0.976,2.176-2.175V2.8C27.346,1.598,26.369,0.624,25.17,0.624z M25.213,22.867c0,1.011-0.824,1.837-1.838,1.837
-			H3.937c-1.018,0-1.838-0.826-1.838-1.837V4.48c0-1.013,0.82-1.837,1.838-1.837h19.438c1.014,0,1.838,0.824,1.838,1.837V22.867z"/>
-		<path style="fill:#030104;" d="M17.465,12.859v-0.048c1.832-0.712,2.684-2.052,2.684-3.495c0-1.514-0.803-2.639-1.951-3.249
+			H3.937c-1.018,0-1.838-0.826-1.838-1.837V4.48c0-1.013,0.82-1.837,1.838-1.837h19.438c1.014,0,1.838,0.824,1.838,1.837V22.867z"
+        />
+        <path
+          style="fill: #030104"
+          d="M17.465,12.859v-0.048c1.832-0.712,2.684-2.052,2.684-3.495c0-1.514-0.803-2.639-1.951-3.249
 			C17,5.356,15.607,5.14,13.335,5.14c0,0-3.836,0.078-4.812,0.273v16.239c0.829,0.123,2.198,0.245,4.03,0.245
 			c3.276,0,5.278-0.538,6.475-1.492c1.025-0.801,1.711-1.978,1.711-3.491C20.74,14.786,19.346,13.347,17.465,12.859z M12.21,7.972
 			c0.295-0.074,0.76-0.123,1.587-0.123c1.689,0,2.642,0.661,2.642,1.905c0,1.225-1.027,2.029-3.005,2.029H12.21V7.972z
 			 M13.653,19.161c-0.636,0-1.075,0-1.442-0.072v-4.642h1.271c1.856,0,3.348,0.66,3.348,2.321
-			C16.83,18.502,15.338,19.161,13.653,19.161z"/>
-	
+			C16.83,18.502,15.338,19.161,13.653,19.161z"
+        />
       </symbol>
-      
+
       <symbol id="italic" viewBox="0 0 512 512">
-        <path fill="var(--ci-primary-color, currentColor)" d="M16,496H496V16H16ZM48,48H464V464H48Z" class="ci-primary"/>
-  <polygon fill="var(--ci-primary-color, currentColor)" points="200 143.998 244.442 143.998 202.442 367.998 152 367.998 152 399.998 312 399.998 312 367.998 267.558 367.998 309.558 143.998 360 143.998 360 111.998 200 111.998 200 143.998" class="ci-primary"/>
+        <path
+          fill="var(--ci-primary-color, currentColor)"
+          d="M16,496H496V16H16ZM48,48H464V464H48Z"
+          class="ci-primary"
+        />
+        <polygon
+          fill="var(--ci-primary-color, currentColor)"
+          points="200 143.998 244.442 143.998 202.442 367.998 152 367.998 152 399.998 312 399.998 312 367.998 267.558 367.998 309.558 143.998 360 143.998 360 111.998 200 111.998 200 143.998"
+          class="ci-primary"
+        />
       </symbol>
       <symbol id="strike" viewBox="0 0 512 512">
-        <path d="M490.667,0H21.333C9.552,0,0,9.551,0,21.333v469.333C0,502.449,9.552,512,21.333,512h469.333
+        <path
+          d="M490.667,0H21.333C9.552,0,0,9.551,0,21.333v469.333C0,502.449,9.552,512,21.333,512h469.333
 			c11.782,0,21.333-9.551,21.333-21.333V21.333C512,9.551,502.45,0,490.667,0z M469.334,469.333L469.334,469.333H42.667V42.667
-			h426.667V469.333z"/>
-      <path d="M362.667,85.333H149.333c-11.782,0-21.333,9.551-21.333,21.333v42.667c0,11.782,9.551,21.334,21.333,21.334
+			h426.667V469.333z"
+        />
+        <path
+          d="M362.667,85.333H149.333c-11.782,0-21.333,9.551-21.333,21.333v42.667c0,11.782,9.551,21.334,21.333,21.334
 			s21.333-9.551,21.333-21.333V128h64v170.667h-21.333C201.552,298.667,192,308.218,192,320c0,11.782,9.551,21.333,21.333,21.333
 			h85.333c11.782,0,21.333-9.551,21.333-21.333c0-11.782-9.551-21.333-21.333-21.333h-21.333V128h64v21.333
-			c0,11.782,9.551,21.333,21.333,21.333c11.782,0,21.334-9.551,21.334-21.333v-42.667C384,94.884,374.45,85.333,362.667,85.333z"/>
-      <path d="M362.667,384.001H149.333C137.552,384,128,393.551,128,405.333c0,11.782,9.551,21.334,21.333,21.334h213.333
-			c11.782,0,21.333-9.551,21.333-21.333C384,393.552,374.448,384.001,362.667,384.001z"/>
+			c0,11.782,9.551,21.333,21.333,21.333c11.782,0,21.334-9.551,21.334-21.333v-42.667C384,94.884,374.45,85.333,362.667,85.333z"
+        />
+        <path
+          d="M362.667,384.001H149.333C137.552,384,128,393.551,128,405.333c0,11.782,9.551,21.334,21.333,21.334h213.333
+			c11.782,0,21.333-9.551,21.333-21.333C384,393.552,374.448,384.001,362.667,384.001z"
+        />
       </symbol>
       <symbol id="delete" viewBox="0 0 512 512">
-        <path style="fill:#2D527C;" d="M180.066,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
-		s15.738,7.047,15.738,15.738v100.721C195.803,406.329,188.756,413.377,180.066,413.377z"/>
-	<path style="fill:#2D527C;" d="M256,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
-		c8.69,0,15.738,7.047,15.738,15.738v100.721C271.738,406.329,264.69,413.377,256,413.377z"/>
-	<path style="fill:#2D527C;" d="M331.934,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
-		s15.738,7.047,15.738,15.738v100.721C347.672,406.329,340.625,413.377,331.934,413.377z"/>
-	<path style="fill:#2D527C;" d="M395.935,73.706c-8.69,0-15.738,7.047-15.738,15.738s7.047,15.738,15.738,15.738
+        <path
+          style="fill: #2d527c"
+          d="M180.066,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
+		s15.738,7.047,15.738,15.738v100.721C195.803,406.329,188.756,413.377,180.066,413.377z"
+        />
+        <path
+          style="fill: #2d527c"
+          d="M256,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
+		c8.69,0,15.738,7.047,15.738,15.738v100.721C271.738,406.329,264.69,413.377,256,413.377z"
+        />
+        <path
+          style="fill: #2d527c"
+          d="M331.934,413.377c-8.69,0-15.738-7.047-15.738-15.738V296.918c0-8.69,7.047-15.738,15.738-15.738
+		s15.738,7.047,15.738,15.738v100.721C347.672,406.329,340.625,413.377,331.934,413.377z"
+        />
+        <path
+          style="fill: #2d527c"
+          d="M395.935,73.706c-8.69,0-15.738,7.047-15.738,15.738s7.047,15.738,15.738,15.738
 		c18.295,0,33.18,14.885,33.18,33.18v37.64H407.08H104.92H82.886v-37.64c0-18.295,14.885-33.18,33.18-33.18h163.541
 		c8.69,0,15.738-7.047,15.738-15.738s-7.047-15.738-15.738-15.738h-92.852v-42.23h138.492v57.968c0,8.69,7.047,15.738,15.738,15.738
 		s15.738-7.047,15.738-15.738V15.738c0-8.69-7.047-15.738-15.738-15.738H171.017c-8.69,0-15.738,7.047-15.738,15.738v57.968h-39.214
 		c-35.651,0-64.655,29.005-64.655,64.655v53.377c0,8.69,7.047,15.738,15.738,15.738h22.034v288.786
 		c0,8.69,7.047,15.738,15.738,15.738h302.16c8.69,0,15.738-7.047,15.738-15.738V207.476h22.034c8.69,0,15.738-7.047,15.738-15.738
-		v-53.377C460.59,102.71,431.585,73.706,395.935,73.706z M391.342,480.525H120.658V207.476h270.685V480.525z"/>
-
+		v-53.377C460.59,102.71,431.585,73.706,395.935,73.706z M391.342,480.525H120.658V207.476h270.685V480.525z"
+        />
       </symbol>
 
-      <symbol xmlns="http://www.w3.org/2000/svg" id="triangle" xmlns:bx="https://boxy-svg.com" viewBox="110 74 95 90">
-        <path d="M 215.183 72.172 L 280.113 165.896 L 150.254 165.896 L 215.183 72.172 Z" style="fill: #b0b7b7;" transform="matrix(0.999998, -0.001981, 0.001981, 0.999998, -59.337037, 3.340639)" bx:shape="triangle 150.254 72.172 129.859 93.724 0.5 0 1@ef1ee0c6"/>
+      <symbol
+        xmlns="http://www.w3.org/2000/svg"
+        id="triangle"
+        xmlns:bx="https://boxy-svg.com"
+        viewBox="110 74 95 90"
+      >
+        <path
+          d="M 215.183 72.172 L 280.113 165.896 L 150.254 165.896 L 215.183 72.172 Z"
+          style="fill: #b0b7b7"
+          transform="matrix(0.999998, -0.001981, 0.001981, 0.999998, -59.337037, 3.340639)"
+          bx:shape="triangle 150.254 72.172 129.859 93.724 0.5 0 1@ef1ee0c6"
+        />
       </symbol>
-      <symbol viewBox="0 0 200 100" id="ellipse" xmlns="http://www.w3.org/2000/svg">
+      <symbol
+        viewBox="0 0 200 100"
+        id="ellipse"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <ellipse fill="#b0b7b7" cx="100" cy="50" rx="100" ry="50" />
       </symbol>
-      <symbol viewBox="0 0 100 100" id="line" xmlns="http://www.w3.org/2000/svg">
+      <symbol
+        viewBox="0 0 100 100"
+        id="line"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <line x1="0" y1="80" x2="100" y2="20" stroke="#b0b7b7" />
       </symbol>
-  </svg>
-</body>
+    </svg>
+  </body>
 </html>

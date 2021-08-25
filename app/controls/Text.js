@@ -1,89 +1,86 @@
-import {ProductDesigner} from '../ProductDesigner.js'
+import { ProductDesigner } from '../ProductDesigner.js';
 export class Text extends ProductDesigner {
   constructor(canvas, toolbar, option) {
-    super(canvas, toolbar)
-    this.option = option
+    super(canvas, toolbar);
+    this.option = option;
   }
-	control(title, config) {
-    return new fabric.IText(title, config)
+  control(title, config) {
+    return new fabric.IText(title, config);
   }
 
   config() {
+    let config = super.config();
 
-    let config = super.config()
-    
-    config.fontSize = 16
-    config.top = 240
+    config.fontSize = 16;
+    config.top = 240;
 
     switch (this.option) {
       case 'heading':
-        config.fontSize = 42
-        config.top = 100
-      break
+        config.fontSize = 42;
+        config.top = 100;
+        break;
       case 'subheading':
-        config.fontSize = 33
-        config.top = 180
-      break
+        config.fontSize = 33;
+        config.top = 180;
+        break;
     }
 
-    
-    return Object.assign({}, config, { 
+    return Object.assign({}, config, {
       fontFamily: 'Comic Sans',
-      }
-    )
+    });
   }
 
   render() {
-    const control = this.control('Hello Text!', this.config())
-    this.addToCanvas(control)
+    const control = this.control('Hello Text!', this.config());
+    this.addToCanvas(control);
   }
 
   fontSizes() {
     return [
-      {8: 8},
-      {10: 10},
-      {12: 12},
-      {14: 14},
-      {16: 16},
-      {18: 18},
-      {21: 21},
-      {24: 24},
-      {27: 27},
-      {30: 30},
-      {33: 33},
-      {36: 36},
-      {39: 39},
-      {42: 42},
-      {45: 45},
-      {48: 48},
-      {51: 51},
-      {54: 54},
-      {57: 57},
-      {60: 60},
-      {65: 65},
-      {70: 70},
-      {75: 75},
-      {80: 80},
-      {85: 85},
-      {90: 90} 
-    ]
+      { 8: 8 },
+      { 10: 10 },
+      { 12: 12 },
+      { 14: 14 },
+      { 16: 16 },
+      { 18: 18 },
+      { 21: 21 },
+      { 24: 24 },
+      { 27: 27 },
+      { 30: 30 },
+      { 33: 33 },
+      { 36: 36 },
+      { 39: 39 },
+      { 42: 42 },
+      { 45: 45 },
+      { 48: 48 },
+      { 51: 51 },
+      { 54: 54 },
+      { 57: 57 },
+      { 60: 60 },
+      { 65: 65 },
+      { 70: 70 },
+      { 75: 75 },
+      { 80: 80 },
+      { 85: 85 },
+      { 90: 90 },
+    ];
   }
   fontList() {
     return [
-    {'Comic Sans': 'Comic Sans'},
-    {'Proxima Nova': 'Proxima Nova'},
-    {'Times New Roman': 'Times New Roman'},
-    {'Arial': 'Arial'},
-    {'Calibri': 'Calibri'},
-    {'Verdana': 'Verdana'},
-    {'Helvetica': 'Helvetica'},
-    {'Courier New': 'Courier New'},
-    {'Courier': 'Courier'},
-    {'Baskerville': 'Baskerville'},
-    {'Cambria': 'Cambria'},
-    {'Century Gothic': 'Century Gothic'},
-    {'Georgia': 'Georgia'},
-    ]
+      { 'Comic Sans': 'Comic Sans' },
+      { 'Proxima Nova': 'Proxima Nova' },
+      { 'Times New Roman': 'Times New Roman' },
+      { Arial: 'Arial' },
+      { Calibri: 'Calibri' },
+      { Verdana: 'Verdana' },
+      { Helvetica: 'Helvetica' },
+      { 'Courier New': 'Courier New' },
+      { Courier: 'Courier' },
+      { Baskerville: 'Baskerville' },
+      { Cambria: 'Cambria' },
+      { 'Century Gothic': 'Century Gothic' },
+      { Georgia: 'Georgia' },
+    ];
   }
 
   navigationButtons() {
@@ -94,17 +91,18 @@ export class Text extends ProductDesigner {
         //use arrow function otherwise reference to this for productDesigner class ll not be available
         activeOption: this.getActiveControlProp('fill') || '#000000',
         event: (event) => {
-          this.setColor(event)
-        }
+          this.setColor(event);
+        },
       },
       {
-        type:'color',
+        type: 'color',
         title: 'Bg Color',
         //use arrow function otherwise reference to this for productDesigner class ll not be available
-        activeOption: this.getActiveControlProp('textBackgroundColor') || '#FFFFFF',
+        activeOption:
+          this.getActiveControlProp('textBackgroundColor') || '#FFFFFF',
         event: (event) => {
-          this.setBackgroundColor(event)
-        }
+          this.setBackgroundColor(event);
+        },
       },
       {
         type: 'svg',
@@ -115,8 +113,8 @@ export class Text extends ProductDesigner {
         activeOption: this.getActiveControlProp('fontWeight') == 'bold',
         //use arrow function otherwise reference to this for productDesigner class ll not be available
         event: (event) => {
-          this.updateControl("fontWeight", 'bold', 'normal')
-        }
+          this.updateControl('fontWeight', 'bold', 'normal');
+        },
       },
       {
         type: 'svg',
@@ -127,8 +125,8 @@ export class Text extends ProductDesigner {
         activeOption: this.getActiveControlProp('fontStyle') == 'italic',
         //use arrow function otherwise reference to this for productDesigner class ll not be available
         event: (event) => {
-          this.updateControl("fontStyle", 'italic', 'normal')
-        }
+          this.updateControl('fontStyle', 'italic', 'normal');
+        },
       },
       {
         type: 'svg',
@@ -139,8 +137,8 @@ export class Text extends ProductDesigner {
         activeOption: this.getActiveControlProp('underline') == true,
         //use arrow function otherwise reference to this for productDesigner class ll not be available
         event: (event) => {
-          this.updateControl("underline", true, false)
-        }
+          this.updateControl('underline', true, false);
+        },
       },
       {
         type: 'select',
@@ -148,8 +146,8 @@ export class Text extends ProductDesigner {
         options: this.fontSizes(),
         activeOption: this.getActiveControlProp('fontSize'),
         event: (event) => {
-          this.updateControl("fontSize", event.target.value)
-        }
+          this.updateControl('fontSize', event.target.value);
+        },
       },
       {
         type: 'select',
@@ -157,18 +155,18 @@ export class Text extends ProductDesigner {
         options: this.fontList(),
         activeOption: this.getActiveControlProp('fontFamily'),
         event: (event) => {
-          this.updateControl("fontFamily", event.target.value)
-        }
-      }
-    ]
-    return navButtons.concat(super.navigationButtons())
+          this.updateControl('fontFamily', event.target.value);
+        },
+      },
+    ];
+    return navButtons.concat(super.navigationButtons());
   }
   setColor(event) {
-    this.getActiveControl().set("fill", event.target.value)
-    event.target.select()
+    this.getActiveControl().set('fill', event.target.value);
+    event.target.select();
   }
   setBackgroundColor(event) {
-    this.getActiveControl().set("textBackgroundColor", event.target.value)
-    event.target.select()
+    this.getActiveControl().set('textBackgroundColor', event.target.value);
+    event.target.select();
   }
 }
